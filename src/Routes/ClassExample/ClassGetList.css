@@ -1,0 +1,123 @@
+#Book-GetList {
+    border: 2px solid rgb(250, 246, 246);
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: bottom 20px;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  
+  #Book-GetList td, #Book-GetList th {
+    border: 2px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* #Book-GetList tr:nth-child(even){background-color: #f2f2f2;} */
+  
+  #Book-GetList th {
+    border: 1px solid #ddd;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    
+    background-color: #04AA6D;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .Book-Data-Form{
+    align-content: center;
+  }
+
+  .Display-Book-Table{
+    margin-bottom:20px;
+  }
+
+  
+  h1{
+    text-align:center;
+    color:#eb77c8;
+  }
+
+  h3{
+    text-align:left;
+    color:#bdf597;
+  }
+ 
+
+  .modal {
+    font-size: 12px;
+  }
+
+  .model button{
+    background-color:crimson;
+  }
+  .modal  .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal  .content {
+    width: 100%;
+    padding: 10px 5px;
+    background: #faf9f9;
+  }
+   
+  .modal  .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }
+
+  .actions {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #5c6ae6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 10px;
+    padding: 7px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+    vertical-align:middle;
+  }
+
+  .popup-input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
+
+  
+  
+  
+  
+  .actions:hover {
+    padding-right: 25px;
+  }
+  
+  .actions:hover :after {
+    opacity: 1;
+    right: 0;
+  }
+
+  
