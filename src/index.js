@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./Routes/Home";
 import FunctionExample from "./Routes/FunctionExample/FunctionExample";
 import ClassExample from "./Routes/ClassExample/ClassExample";
-import ClassEditBookExample from "./Routes/ClassExample/ClassEditBookExample";
 import ClassGetList from "./Routes/ClassExample/ClassGetList";
-import Home from "./Routes/Home";
+import ClassEditBookExample from "./Routes/ClassExample/ClassEditBookExample";
+import ClassEditCategoryExample from "./Routes/ClassExample/ClassEditCategoryExample";
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -16,6 +19,9 @@ ReactDOM.render(
       <Route path="/ClassGetList" element={<ClassGetList />} />
       <Route exact path="/ClassEditBookExample/:bookId" element={<ClassEditBookExample/>} />
       <Route exact path="/addbook" element={<ClassEditBookExample />} />
+      <Route exact path="/ClassEditCategoryExample/:categoryId" element={<ClassEditCategoryExample/>} />
+      <Route exact path="/addcategory" element={<ClassEditCategoryExample/>} />
+      
     </Routes>
   </BrowserRouter>,
 

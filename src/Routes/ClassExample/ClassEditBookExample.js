@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams,Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import "./ClassEditBookExample.css";
@@ -11,6 +11,8 @@ function ClassEditBookExample() {
     let navigate = useNavigate();
     const { register, handleSubmit, setValue } = useForm();
     const {bookId} = useParams();
+    // const [editmessage,setEditMessage] = useState('');
+    // const [createmessage,setCreateMessage] = useState('');
 
     const isAdd = !bookId;
 
@@ -37,6 +39,10 @@ function ClassEditBookExample() {
       axios.post('http://localhost:8080/api/BooksDetails/add/' , addData)
       .then((res) => {
         console.log(res);
+        console.log(res.data.status);
+        alert(res.data.editstatus);
+        //setCreateMessage(res.data.status);
+
       });
     }
 
@@ -45,9 +51,14 @@ function ClassEditBookExample() {
         id: id,
         data: data
       };
+      
       axios.post('http://localhost:8080/api/BooksDetails/edit/' , editData)
       .then((res) => {
-        console.log(res);
+
+        console.log(res.data.editstatus);
+        // setEditMessage(res.data.status);
+        alert(res.data.editstatus);
+
       });
     }
 
@@ -92,7 +103,11 @@ function ClassEditBookExample() {
 
           <Button variant="primary" type="submit">
             Update
-          </Button>
+          </Button><br/>
+
+          <Link to={`/./`}>Previos Page </Link>
+
+          {/* <label>{editmessage} {createmessage}</label> */}
         </Form>
       </Container>
     );

@@ -29,7 +29,7 @@ class ClassExample extends Component {
   getCategoriesData() {
     console.log("1st time getCategoriesData");
     axios
-      .get("http://localhost:8080/api/categorydetails")
+      .get("http://localhost:8080/api/CategoryDetails")
       .then((categoriesdata) => {
         const CategoriesData = categoriesdata.data;
         this.setState({ CategoriesData });
@@ -49,7 +49,7 @@ class ClassExample extends Component {
   }
 
   
-
+  
   handleClickDelete = (BDID) => {
     fetch("http://localhost:8080/api/BooksDetails/delete/" + BDID, {
     // axios.get('http://localhost:8080/api/BooksData/delete/'+BDID,{

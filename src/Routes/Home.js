@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import './Home.css';
 
 import { Button, Row, Col, Container } from "react-bootstrap";
 
@@ -9,26 +10,31 @@ class Home extends Component {
     this.state = {};
   }
 
+  
+  
+
   componentDidMount() {}
 
   render() {
+    
     return (
-      
+
+       
         <Container>
           <Row>
             <Col>
-              <h1>Welcome to React</h1>
+              <h1>Welcome Library Management ....</h1>
             </Col>
           </Row>
-          <Row>
-            <Col md="2">
+          <Row md="6" className="head">
+            <Col>
               <Link to="/classexample">
-                <Button variant="success">Class Example</Button>
+                <Button variant="secondary">Class Example</Button>
               </Link>
             </Col>
-            <Col md="2">
+            <Col>
               <Link to="/functionexample">
-                <Button variant="success">Function Example</Button>
+                <Button variant="secondary">Function Example</Button>
               </Link>
             </Col>
           </Row>
