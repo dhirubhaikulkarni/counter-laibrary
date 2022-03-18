@@ -16,9 +16,8 @@ function ClassEditCategoryExample() {
 
     useEffect(() => {
       if(!isAdd) {
-       axios.get(`http://localhost:8080/api/CategoryDetails/edit/${categoryId}`).then((res1) => {
+       axios.get(`http://localhost:8080/api/CategoryDetails/${categoryId}`).then((res1) => {
           const categoryDataState = res1.data;
-          
           const fields = ['categoryid', 'Name'];
           fields.forEach(field => setValue(field, categoryDataState[field]));
         });

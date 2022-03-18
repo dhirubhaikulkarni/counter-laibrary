@@ -2,17 +2,40 @@ import React from "react";
 import "./ClassGetList.css";
 import { Link } from "react-router-dom";
 import { Button, Row, Col, Container } from "react-bootstrap";
-import Popup from "reactjs-popup";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 import "reactjs-popup/dist/index.css";
+import "./popups.css";
+const popupS = require("popups");
 
 class ClassGetList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const handleGetFunctionDelete = (BDID) => {
-      console.log("In on trigger function");
-      console.log(BDID);
-      this.props.PassFunctionDelete(BDID);
-    };
-    
+    //const { abc }= this.props.PassFunctionDelete(BDID)
+
+    function handleGetFunctionDelete(BDID) {  
+      //this.props.PassFunctionDelete(BDID)    
+      popupS.confirm({
+        content:     '<b>Do you like what you see?</b>',
+        labelOk:     'Yes',
+        labelCancel: 'No',
+        onSubmit: function(e) {
+          
+          this.props.PassFunctionDelete(BDID);
+            console.log(':)');
+        },
+        onClose: function() {
+            console.log(':(');
+        }
+    });
+    }
+
+
+   
     const { PassBookData, PassCategoryData, PassPublishersData } = this.props;
 
     const ToShowBooksData = PassBookData.map((info) => {
@@ -29,28 +52,14 @@ class ClassGetList extends React.Component {
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </Link>
           </td>
+
           <td>
-          <Popup
-              trigger={<i class="fa fa-trash"></i>}
-              position="right center"
-              modal="true"
-            >
-              <div>
-                <h3>Delete Book</h3>
-                <hr />
-                <h5>
-                  {"are you sure you want to delete book: " +
-                    " " +
-                    info.bookname}
-                </h5>
-                <Button onClick={() => handleGetFunctionDelete(info.BDID)}>Comfirm</Button>
-                
-              </div>
-            </Popup>
-            {/* <Button onClick={() => handleGetFunctionDelete(info.BDID)}>
-              Delete
-            </Button> */}
+            <Button onClick={() => handleGetFunctionDelete(info.BDID)}>
+              Comfirm
+            </Button>
           </td>
+
+          
         </tr>
       );
     });
@@ -62,11 +71,11 @@ class ClassGetList extends React.Component {
           <td>{category.Name} </td>
           <td>
             <Link to={`/ClassEditCategoryExample/${category.categoryid}`}>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+              <i class="fa fa-pencil" aria-hidden="true"></i>
             </Link>
           </td>
           <td>
-          <i class="fa fa-trash"></i>
+            <i class="fa fa-trash"></i>
           </td>
           {/* <td>
           <Link  to="/functionexample/" >Back</Link>
@@ -82,13 +91,12 @@ class ClassGetList extends React.Component {
           <td>{publisher.Name} </td>
           <td>
             <Link to={`/functionexample/`}>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+              <i class="fa fa-pencil" aria-hidden="true"></i>
             </Link>
           </td>
           <td>
-          <i class="fa fa-trash"></i>
+            <i class="fa fa-trash"></i>
           </td>
-          
         </tr>
       );
     });
@@ -158,7 +166,6 @@ class ClassGetList extends React.Component {
                     <th>PublisherName</th>
                     <th></th>
                     <th></th>
-                    
                   </tr>
                 </thead>
                 {ToShowPublishersData}
