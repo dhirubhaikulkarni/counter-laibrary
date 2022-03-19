@@ -2,9 +2,6 @@ import React from "react";
 import "./ClassGetList.css";
 import { Link } from "react-router-dom";
 import { Button, Row, Col, Container } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-
 import "reactjs-popup/dist/index.css";
 import "./popups.css";
 const popupS = require("popups");
@@ -15,27 +12,25 @@ class ClassGetList extends React.Component {
   }
 
   render() {
-    //const { abc }= this.props.PassFunctionDelete(BDID)
+    const ref = (BDID) => {
+      console.log("ref");
+      this.props.PassFunctionDelete(BDID);
+    };
 
-    function handleGetFunctionDelete(BDID) {  
-      //this.props.PassFunctionDelete(BDID)    
+    function handleGetFunctionDelete(BDID) {
       popupS.confirm({
-        content:     '<b>Do you like what you see?</b>',
-        labelOk:     'Yes',
-        labelCancel: 'No',
-        onSubmit: function(e) {
-          
-          this.props.PassFunctionDelete(BDID);
-            console.log(':)');
+        content: "<b>Are you Sure you want to Delete The Book</b>",
+        labelOk: "Yes",
+        labelCancel: "No",
+        onSubmit: function () {
+          ref(BDID);
         },
-        onClose: function() {
-            console.log(':(');
-        }
-    });
+        onClose: function () {
+          console.log(":(");
+        },
+      });
     }
 
-
-   
     const { PassBookData, PassCategoryData, PassPublishersData } = this.props;
 
     const ToShowBooksData = PassBookData.map((info) => {
@@ -58,8 +53,6 @@ class ClassGetList extends React.Component {
               Comfirm
             </Button>
           </td>
-
-          
         </tr>
       );
     });
@@ -87,10 +80,10 @@ class ClassGetList extends React.Component {
     const ToShowPublishersData = PassPublishersData.map((publisher) => {
       return (
         <tr>
-          <td key={publisher._id}>{publisher.publsiherid}</td>
+          <td key={publisher._id}>{publisher.publisherid}</td>
           <td>{publisher.Name} </td>
           <td>
-            <Link to={`/functionexample/`}>
+            <Link to={`/ClassEditPublisherExample/${publisher.publisherid}`}>
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </Link>
           </td>
@@ -116,7 +109,7 @@ class ClassGetList extends React.Component {
               </Link>
             </Col>
             <Col md="4">
-              <Link to="/ClassEditCategoryExample">
+              <Link to="/addpublisher">
                 <Button variant="success">Add Publisher</Button>
               </Link>
             </Col>

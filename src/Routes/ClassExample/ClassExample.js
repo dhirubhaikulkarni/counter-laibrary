@@ -21,7 +21,9 @@ class ClassExample extends Component {
     console.log("1st time getBookData");
     axios.get("http://localhost:8080/api/BooksDetails").then((booksdata) => {
       const BooksData = booksdata.data;
-      this.setState({ BooksData });
+      console.log(BooksData);
+      
+      this.setState({ BooksData: booksdata.data });
       console.log(BooksData);
     });
   }
@@ -33,18 +35,18 @@ class ClassExample extends Component {
       .then((categoriesdata) => {
         const CategoriesData = categoriesdata.data;
         this.setState({ CategoriesData });
-        console.log(CategoriesData);
+        //console.log(CategoriesData);
       });
   }
 
   getPublishersData() {
     console.log("1st time getPublishersData");
     axios
-      .get("http://localhost:8080/api/publisherdetails")
+      .get("http://localhost:8080/api/PublisherDetails")
       .then((publishersdata) => {
         const PublishersData = publishersdata.data;
         this.setState({ PublishersData });
-        console.log(PublishersData);
+        //console.log(PublishersData);
       });
   }
 
@@ -75,6 +77,7 @@ class ClassExample extends Component {
           PassCategoryData={CategoriesData}
           PassPublishersData={PublishersData}
           PassFunctionDelete={this.handleClickDelete}
+          
         />
       </div>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { useNavigate, useParams,Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
@@ -90,6 +90,9 @@ function ClassEditBookExample() {
             <Form.Label>Category Name</Form.Label>
             <Form.Control name="Category" type="text" {...register('Category.Name')} />
           </Form.Group>
+
+
+        
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Publisher Name </Form.Label>
