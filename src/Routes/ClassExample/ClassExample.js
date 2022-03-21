@@ -79,6 +79,7 @@ class ClassExample extends Component {
           PassFunctionDelete={this.handleClickDelete}
           
         />
+       
       </div>
     );
   }

@@ -9,6 +9,7 @@ import ClassGetList from "./Routes/ClassExample/ClassGetList";
 import ClassEditBookExample from "./Routes/ClassExample/ClassEditBookExample";
 import ClassEditCategoryExample from "./Routes/ClassExample/ClassEditCategoryExample";
 import ClassEditPublisherExample from "./Routes/ClassExample/ClassEditPublisherExample";
+import FunctionBookSearchPanel from "./Routes/FunctionExample/FunctionBookSearchPanel";
 
 
 ReactDOM.render(
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route exact path="/addcategory" element={<ClassEditCategoryExample/>} />
       <Route exact path="/ClassEditPublisherExample/:publisherId" element={<ClassEditPublisherExample/>} />
       <Route exact path="/addpublisher" element={<ClassEditPublisherExample/>} />
+      <Route exact path="/searchpanel" element={<FunctionBookSearchPanel/>} />
       
     </Routes>
   </BrowserRouter>,

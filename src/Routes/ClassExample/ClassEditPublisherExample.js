@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,7 @@ function ClassEditPublisherExample() {
     let navigate = useNavigate();
     const { register, handleSubmit, setValue } = useForm();
     const {publisherId} = useParams();
+    const [Publisherdata, setPublisherdata] = useState([]);
 
     const isAdd = !publisherId;
 
@@ -23,6 +24,16 @@ function ClassEditPublisherExample() {
         });
       }
     });
+    
+     //  Fetching Publisher Data For Dropdown
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/PublisherDetails`).then((res1) => {
+      const publisherdata = res1.data;
+      setPublisherdata(publisherdata);
+    });
+  },[]);
+  console.log(Publisherdata);
 
     function onSubmit(data) {
       return isAdd ? createUser(data) : updateUser(publisherId, data);
@@ -69,10 +80,21 @@ function ClassEditPublisherExample() {
             <Form.Control name="Category Id" type="text" {...register('publisherid')} />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          {/* <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Publisher Name</Form.Label>
             <Form.Control name="Category Name" type="text" {...register('Name')} />
-          </Form.Group>
+          </Form.Group> */}
+
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Publisher Name</Form.Label>
+          <div>
+            <select className="popup-input" {...register("Publisher.Name")}>
+              {Publisherdata.map((item) => (
+                <option>{item.Name}</option>
+              ))}
+            </select>
+          </div>
+        </Form.Group>
 
           
 

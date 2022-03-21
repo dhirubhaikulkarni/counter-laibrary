@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FunctionBookGetList from './FunctionBookGetList';
 import FunctionPagination from './FunctionPagination';
+import FunctionBookSearchPanel from './FunctionBookSearchPanel';
 
 function FunctionExample() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(1);
+  const [postsPerPage] = useState(2);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,6 +35,7 @@ function FunctionExample() {
   return (
     <div className="container mt-3">
       <h1 className="text-primary mb-4">Book Getlist</h1>
+      <FunctionBookSearchPanel />
       <FunctionBookGetList posts={currentPosts} loading={loading} />
       <FunctionPagination
         postsPerPage={postsPerPage}
