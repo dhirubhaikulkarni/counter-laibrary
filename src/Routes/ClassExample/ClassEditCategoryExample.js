@@ -85,16 +85,7 @@ function ClassEditCategoryExample() {
             {...register("categoryid")}
           />
         </Form.Group>
-
-        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Category Name</Form.Label>
-          <Form.Control
-            name="Category Name"
-            type="text"
-            {...register("Name")}
-          />
-        </Form.Group> */}
-
+        
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Category Name</Form.Label>
           <div>

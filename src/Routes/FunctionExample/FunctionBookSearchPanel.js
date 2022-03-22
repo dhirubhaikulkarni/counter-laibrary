@@ -8,25 +8,8 @@ function FunctionBookSearchPanel() {
   let navigate = useNavigate();
   const [Categorydata, setCategorydata] = useState([]);
   const [Publisherdata, setPublisherdata] = useState([]);
-  const [values,setvalue] = useState('');
-  const [data,setdata] = useState('');
-
-
-  const isAvailabledata = data;
-  console.log(isAvailabledata);
-
-  useEffect(() => {
-    if (isAvailabledata) {
-      axios
-        .get(`http://localhost:8080/api/SearchBook/${data}`)
-        .then((res1) => {
-          const searchbookdetail = res1.data;
-          //console.log(searchbookdetail);
-        });
-    }
-    
-  });
-
+  // const [values,setvalue] = useState('');
+  const [inputdata, setInputdata] = useState("");
 
   //  Fetching Category and Publisher Data For Dropdown
   useEffect(() => {
@@ -41,15 +24,20 @@ function FunctionBookSearchPanel() {
     });
   }, []);
 
-  
   const getData = (event) => {
-   setvalue( event.target.value);
-  }
+    setInputdata(event.target.value);
+  };
 
-  const passData = (item) => {
-    setdata( item.data = values);
-    item.preventDefault();
-  }
+  const passData = (i) => {
+    i.preventDefault();
+    console.log(inputdata);
+    axios
+      .get(`http://localhost:8080/api/SearchBook/${inputdata}`)
+      .then((res1) => {
+        const searchbookdetail = res1.data;
+        console.log(searchbookdetail);
+      });
+  };
   // console.log(data)
 
   return (
@@ -79,12 +67,11 @@ function FunctionBookSearchPanel() {
                 name="Bookname"
                 type="text"
                 placeholder="Enter Book Name"
-                value={values} 
                 onChange={getData}
               />
             </Form.Group>
           </Col>
-          {/* <Col className="md-3">
+          <Col className="md-3">
           <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Category Name</Form.Label>
           <div>
@@ -107,13 +94,21 @@ function FunctionBookSearchPanel() {
             </select>
           </div>
         </Form.Group>
-          </Col> */}
+          </Col>
 
-          <Col className="md-3">
+          <Col className="md-2">
             <Form.Group className="textbox" controlId="formBasicPassword">
               <Form.Label></Form.Label>
               <Form.Label>
-                <Button  onClick={passData}>Search</Button>
+                <Button onClick={passData}>Search</Button>
+              </Form.Label>
+            </Form.Group>
+          </Col>
+          <Col className="md-1">
+            <Form.Group className="textbox" controlId="formBasicPassword">
+              <Form.Label></Form.Label>
+              <Form.Label>
+                <Button>Reset</Button>
               </Form.Label>
             </Form.Group>
           </Col>

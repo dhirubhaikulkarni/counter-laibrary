@@ -1,11 +1,32 @@
-import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import React  from "react";
+import { Button ,Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "reactjs-popup/dist/index.css";
+import "../ClassExample/popups.css";
+const popupS = require("popups");
 
-const FunctionBookGetList = ({ posts, loading }) => {
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+
+const FunctionBookGetList = ({ posts }) => {
+
+  // PassFunctionDelete
+  // const ref = (BDID) => {
+  //   console.log("ref");
+  //   PassFunctionDelete(BDID);
+  // };
+
+  // function handleGetFunctionDelete(BDID) {
+  //   popupS.confirm({
+  //     content: "<b>Are you Sure you want to Delete The Book</b>",
+  //     labelOk: "Yes",
+  //     labelCancel: "No",
+  //     onSubmit: function () {
+  //       ref(BDID);
+  //     },
+  //     onClose: function () {
+  //       console.log(":(");
+  //     },
+  //   });
+  // }
 
   const ToShowBooksData = posts.map((info) => {
     return (
@@ -21,15 +42,18 @@ const FunctionBookGetList = ({ posts, loading }) => {
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </Link>
         </td>
-        <td>
-        <i class="fa fa-trash"></i>
-        </td>
+        {/* <td>
+            <Button onClick={() => handleGetFunctionDelete(info.BDID)}>
+              Comfirm
+            </Button>
+          </td> */}
       </tr>
     );
   });
 
   return (
     <Container>
+      
       <Row>
         <Col md="8">
           <table id="Book-GetList" className="Book-GetList">
@@ -47,6 +71,7 @@ const FunctionBookGetList = ({ posts, loading }) => {
             </thead>
             {/* {ToShowBooksData} */}
             {ToShowBooksData}
+         
           </table>
         </Col>
       </Row>
