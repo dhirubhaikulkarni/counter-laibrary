@@ -6,27 +6,27 @@ import "../ClassExample/popups.css";
 const popupS = require("popups");
 
 
-const FunctionBookGetList = ({ posts }) => {
+const FunctionBookGetList = ({ posts,PassFunctionDelete }) => {
 
-  // PassFunctionDelete
-  // const ref = (BDID) => {
-  //   console.log("ref");
-  //   PassFunctionDelete(BDID);
-  // };
+  
+  const ref = (BDID) => {
+    console.log("ref");
+    PassFunctionDelete(BDID);
+  };
 
-  // function handleGetFunctionDelete(BDID) {
-  //   popupS.confirm({
-  //     content: "<b>Are you Sure you want to Delete The Book</b>",
-  //     labelOk: "Yes",
-  //     labelCancel: "No",
-  //     onSubmit: function () {
-  //       ref(BDID);
-  //     },
-  //     onClose: function () {
-  //       console.log(":(");
-  //     },
-  //   });
-  // }
+  function handleGetFunctionDelete(BDID, bookname) {
+    popupS.confirm({
+      content: `<b>Are you Sure you want to Delete The Book</b> ${bookname}`,
+      labelOk: "Yes",
+      labelCancel: "No",
+      onSubmit: function () {
+        ref(BDID);
+      },
+      onClose: function () {
+        console.log(":(");
+      },
+    });
+  }
 
   const ToShowBooksData = posts.map((info) => {
     return (
@@ -42,11 +42,11 @@ const FunctionBookGetList = ({ posts }) => {
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </Link>
         </td>
-        {/* <td>
-            <Button onClick={() => handleGetFunctionDelete(info.BDID)}>
-              Comfirm
+        <td>
+            <Button onClick={() => handleGetFunctionDelete(info.BDID, info.bookname)}>
+              Delete
             </Button>
-          </td> */}
+          </td>
       </tr>
     );
   });

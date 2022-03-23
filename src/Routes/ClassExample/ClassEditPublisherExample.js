@@ -77,7 +77,7 @@ function ClassEditPublisherExample() {
         <Form onSubmit={handleSubmit(onSubmit)} className="AddCategory-popup">
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Publisher Id</Form.Label>
-            <Form.Control name="Category Id" type="text" {...register('publisherid')} />
+            <Form.Control name="Publisher Id" type="text" {...register('publisherid')} />
           </Form.Group>
 
           {/* <Form.Group className="mb-3" controlId="formBasicPassword">

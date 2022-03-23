@@ -7,66 +7,103 @@ import FunctionBookGetList from "./FunctionBookGetList";
 
 function FunctionExample() {
   let navigate = useNavigate();
-
   const [posts, setPosts] = useState([]);
-
   const [Categorydata, setCategorydata] = useState([]);
   const [Publisherdata, setPublisherdata] = useState([]);
-  const [inputdata, setInputdata] = useState([]);
 
 
-  // function handleClickDelete (BDID) {
-  //   fetch("http://localhost:8080/api/BooksDetails/delete/" + BDID, {
-  //   // axios.get('http://localhost:8080/api/BooksData/delete/'+BDID,{
-  //     method: "GET",
-  //   }).then((result) => {
-  //     result.json().then((res) => {
-        
-  //       //this.getBookData();
-  //     });
-  //   });
-  // };
+
+  const [inputdata, setinputData] = useState('');
+   const [inputDataCategory, setCategoryDropdowndata] = useState('');
+  const [inputDataPublisher, setPublisherDropdowndata] = useState([]);
   
+
+  function handleClickDelete(BDID) {
+    fetch("http://localhost:8080/api/BooksDetails/delete/" + BDID, {
+      // axios.get('http://localhost:8080/api/BooksData/delete/'+BDID,{
+      method: "GET",
+    }).then((result) => {
+      result.json().then((res) => {
+        fetchPosts();
+        //this.getBookData();
+      });
+    });
+  }
+  const fetchPosts = async () => {
+    const res = await axios.get("http://localhost:8080/api/BooksDetails");
+    setPosts(res.data);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:8080/api/BooksDetails");
-      setPosts(res.data);
-    };
-
     fetchPosts();
-
-//categorydata
+    //categorydata
     axios.get(`http://localhost:8080/api/CategoryDetails`).then((res1) => {
       const categorydata = res1.data;
       setCategorydata(categorydata);
     });
-// publisherdata
+    // publisherdata
     axios.get(`http://localhost:8080/api/PublisherDetails`).then((res1) => {
       const publisherdata = res1.data;
       setPublisherdata(publisherdata);
     });
-
   }, []);
 
   //search book
   const getData = (event) => {
-    setInputdata(event.target.value);
+    setinputData(event.target.value);
+ 
   };
 
-  const passData = (i) => {
-    i.preventDefault();
-    console.log(inputdata);
-    axios
-      .get(`http://localhost:8080/api/SearchBook/${inputdata}`)
-      .then((res1) => {
-        const searchbookdetail = res1.data;
-        setPosts(searchbookdetail);
-      });
+  const getCategoryData = (event) => {
+    setCategoryDropdowndata(event.target.value);
   };
+  
+
+   const getPublisherData = (event) => {
+    setPublisherDropdowndata(event.target.value);
+  };
+  
+  const handlereset = (event) => {
+    fetchPosts();
+  };
+
+
+  const handleSubmit = (i) => {
+    i.preventDefault();
+    if (inputdata) {
+      axios
+        .get(`http://localhost:8080/api/BooksDetails/Search/${inputdata}`)
+        .then((res4) => {
+          const searchData = res4.data;
+
+          setPosts(searchData);
+        });
+    } else if (inputDataCategory) {
+      axios.get(`http://localhost:8080/api/BooksDetails/Search1/${inputDataCategory}`)
+        .then((res4) => {
+          const searchData = res4.data;
+          setPosts(searchData);
+          setinputData("");
+        });
+    } else if (inputDataPublisher){
+      axios.get(`http://localhost:8080/api/BooksDetails/Search2/${inputDataPublisher}`)
+      .then((res4) => {
+        const searchData = res4.data;
+        setPosts(searchData);
+        setinputData("");
+      });
+    }else{
+      alert(`required fileds`)
+    }
+  };
+
+ 
+    
+
+
 
   return (
     <Container>
-      
       <Form className="AddBook-popup">
         <Row>
           <Col className="md-3">
@@ -77,39 +114,40 @@ function FunctionExample() {
                 type="text"
                 placeholder="Enter Book Name"
                 onChange={getData}
+                required
               />
             </Form.Group>
           </Col>
           <Col className="md-3">
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Category Name</Form.Label>
-        <div>
-          <select className="popup-input" >
-            {Categorydata.map((item) => (
-              <option>{item.Name}</option>
-            ))}
-          </select>
-        </div>
-      </Form.Group>
-        </Col>
-        <Col className="md-3">
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Publisher Name</Form.Label>
-        <div>
-          <select className="popup-input" >
-            {Publisherdata.map((item) => (
-              <option>{item.Name}</option>
-            ))}
-          </select>
-        </div>
-      </Form.Group>
-        </Col>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Category Name</Form.Label>
+              <div>
+                <select className="popup-input" onChange={getCategoryData}>
+                  {Categorydata.map((item) => (
+                    <option>{item.Name}</option>
+                  ))}
+                </select>
+              </div>
+            </Form.Group>
+          </Col>
+          <Col className="md-3">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Publisher Name</Form.Label>
+              <div>
+                <select className="popup-input" onChange={getPublisherData}>
+                  {Publisherdata.map((item) => (
+                    <option>{item.Name}</option>
+                  ))}
+                </select>
+              </div>
+            </Form.Group>
+          </Col>
 
           <Col className="md-1">
             <Form.Group className="textbox" controlId="formBasicPassword">
               <Form.Label></Form.Label>
               <Form.Label>
-                <Button onClick={passData}>Search</Button>
+                <Button onClick={handleSubmit}>Search</Button>
               </Form.Label>
             </Form.Group>
           </Col>
@@ -117,7 +155,9 @@ function FunctionExample() {
             <Form.Group className="textbox" controlId="formBasicPassword">
               <Form.Label></Form.Label>
               <Form.Label>
-                <Button type = "reset">Reset</Button>
+                <Button type="reset" onClick={handlereset}>
+                  Reset
+                </Button>
               </Form.Label>
             </Form.Group>
           </Col>
@@ -138,8 +178,10 @@ function FunctionExample() {
         </Row>
       </Form>
       <h1 className="text-primary mb-4">Book Getlist</h1>
-      <FunctionBookGetList posts={posts}  />
-      {/* PassFunctionDelete={handleClickDelete} */}
+      <FunctionBookGetList
+        posts={posts}
+        PassFunctionDelete={handleClickDelete}
+      />
     </Container>
   );
 }
