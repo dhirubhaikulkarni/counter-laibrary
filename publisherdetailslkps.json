@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "62302d3f5a1aea8901d95512"
+  },
+  "Name": "Jio Pro",
+  "publisherid": 1
+},{
+  "_id": {
+    "$oid": "62302d565a1aea8901d95513"
+  },
+  "Name": "Vivo",
+  "publisherid": 2
+},{
+  "_id": {
+    "$oid": "62302d5d5a1aea8901d95514"
+  },
+  "Name": "Oppo",
+  "publisherid": 3
+}]

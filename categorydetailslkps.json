@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "62302d035a1aea8901d9550d"
+  },
+  "Name": "Ecological",
+  "categoryid": 1
+},{
+  "_id": {
+    "$oid": "62302d1f5a1aea8901d9550e"
+  },
+  "Name": "Ethical",
+  "categoryid": 2
+},{
+  "_id": {
+    "$oid": "62302d375a1aea8901d9550f"
+  },
+  "Name": "Historical",
+  "categoryid": 3
+},{
+  "_id": {
+    "$oid": "6234709ac2dfee411d6265cf"
+  },
+  "categoryid": 4,
+  "Name": "Economical",
+  "__v": 0
+}]

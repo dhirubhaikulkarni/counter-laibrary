@@ -1,0 +1,86 @@
+[{
+  "_id": {
+    "$oid": "623041ff5a1aea8901d9551f"
+  },
+  "bookname": "Python Advance",
+  "quantity": "456",
+  "IsActive": true,
+  "BDID": 1,
+  "Category": {
+    "$oid": "62302d1f5a1aea8901d9550e"
+  },
+  "Publisher": {
+    "$oid": "62302d3f5a1aea8901d95512"
+  }
+},{
+  "_id": {
+    "$oid": "6231bca296d93c830be17ab8"
+  },
+  "bookname": "JAVA",
+  "quantity": "120",
+  "IsActive": true,
+  "BDID": 2,
+  "Category": {
+    "$oid": "62302d035a1aea8901d9550d"
+  },
+  "Publisher": {
+    "$oid": "62302d565a1aea8901d95513"
+  }
+},{
+  "_id": {
+    "$oid": "623814d61fd10b62a1193be2"
+  },
+  "bookname": "Core JAVA",
+  "quantity": "120",
+  "IsActive": true,
+  "BDID": 3,
+  "Category": {
+    "$oid": "62302d035a1aea8901d9550d"
+  },
+  "Publisher": {
+    "$oid": "62302d565a1aea8901d95513"
+  }
+},{
+  "_id": {
+    "$oid": "623814eb1fd10b62a1193be3"
+  },
+  "bookname": "C++",
+  "quantity": "120",
+  "IsActive": false,
+  "BDID": 4,
+  "Category": {
+    "$oid": "62302d035a1aea8901d9550d"
+  },
+  "Publisher": {
+    "$oid": "62302d565a1aea8901d95513"
+  }
+},{
+  "_id": {
+    "$oid": "623815091fd10b62a1193be4"
+  },
+  "bookname": "ADO.NET",
+  "quantity": "120",
+  "IsActive": false,
+  "BDID": 5,
+  "Category": {
+    "$oid": "62302d035a1aea8901d9550d"
+  },
+  "Publisher": {
+    "$oid": "62302d565a1aea8901d95513"
+  }
+},{
+  "_id": {
+    "$oid": "623853909a211bbdc68db58a"
+  },
+  "IsActive": false,
+  "BDID": 6,
+  "bookname": "SQL",
+  "Category": {
+    "$oid": "62302d375a1aea8901d9550f"
+  },
+  "Publisher": {
+    "$oid": "62302d565a1aea8901d95513"
+  },
+  "quantity": "150",
+  "__v": 0
+}]
